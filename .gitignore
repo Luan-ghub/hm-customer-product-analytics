@@ -1,0 +1,12 @@
+# Ambiente virtual e variáveis locais
+.venv/
+.env
+
+# Python e Jupyter
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Dados gerados
+data/*
+!data/.gitkeep
