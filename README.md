@@ -1,20 +1,20 @@
 # **H&M Analytics**
  
+ ---
+
 ## Sobre o projeto
  
-Este projeto aplica Customer e Product Analytics aos dados transacionais da H&M, buscando entender a recorrência dos clientes e sua relação com as características dos consumidores, os grupos de produtos e os canais comerciais.
- 
-O objetivo é identificar quais combinações de clientes, produtos e canais devem ser priorizadas em ações de CRM e em decisões de produto.
+Este projeto aplica Customer e Product Analytics aos dados transacionais da H&M, buscando entender a recorrência dos clientes e sua relação com as características dos consumidores, os grupos de produtos e os canais comerciais. O objetivo é identificar quais combinações de clientes, produtos e canais devem ser priorizadas em ações de CRM e em decisões de produto.
  
 ## Perguntas do projeto
  
 A análise é orientada pelas seguintes perguntas:
  
 - Qual é o nível de recorrência dos clientes e como ele evolui no período observado?
-- Quanto os clientes recorrentes representam do volume de itens e do valor transacionado observado?
-- Quais características e coortes de primeira compra observada apresentam maior recorrência, frequência e valor?
-- Quais grupos de produtos estão associados à primeira compra observada e às compras posteriores?
-- Como os canais comerciais se relacionam com recorrência, frequência, valor e preferência por produtos?
+- Quanto os clientes recorrentes representam do volume de itens e do "valor" transacionado?
+- Quais características e coortes de primeira compra apresentam maior recorrência, frequência e valor?
+- Quais grupos de produtos estão associados à primeira compra e às compras posteriores?
+- Como os canais comerciais se relacionam com recorrência, frequência, valor e preferência?
 
 ## Fonte dos dados
  
@@ -56,10 +56,32 @@ As principais transformações aplicadas foram:
  
 ## Validação das bases processadas
  
-As três bases tratadas foram exportadas em Parquet com compressão Snappy e validadas por meio dos metadados:
+As três bases tratadas foram exportadas em Parquet e validadas por meio dos metadados:
  
 | Arquivo | Linhas | Colunas | Tamanho aproximado |
 |---|---|---|---|
 | articles_clean.parquet | 105.542 | 24 | 2,91 MB |
 | customers_clean.parquet | 1.371.980 | 6 | 80,64 MB |
 | transactions_clean.parquet | 31.788.324 | 5 | 736,01 MB
+
+## Feature engineering
+
+Após a limpeza, foram criadas variáveis para analisar a recorrência dos clientes e sua relação com produtos e canais comerciais. Para atender às perguntas elaboradas no início do projeto, foram criadas features que trouxeram as seguintes informações:
+
+1. datas da primeira, segunda e última compra observada;
+2. quantidade de dias distintos com compra e total de itens adquiridos;
+3. valor observado durante o período;
+4. tempo até a segunda compra e recência da última compra;
+5. tempo disponível para acompanhamento de cada cliente;
+6. identificação de clientes recorrentes;
+7. mês da primeira compra observada e índice de coorte;
+8. quantidade de artigos distintos adquiridos;
+9. quantidade de canais utilizados e classificação entre canal único e multicanal;
+10. agrupamento dos clientes por faixa etária;
+11. classificação das transações entre a primeira data de compra observada e as datas posteriores.
+12. Foram geradas três tabelas analíticas:
+13. customer_purchase: histórico consolidado e características de cada cliente;
+14. customer_monthly: comportamento mensal dos clientes e acompanhamento das coortes;
+15. transactions_features: transações enriquecidas com o mês e o estágio da compra.
+
+Com isso foram geradas 3 tabelas analíticas principais que foram exportadas em Parquet e serão utilizadas para a etapa de análise exploratória.
