@@ -85,3 +85,24 @@ Após a limpeza, foram criadas variáveis para analisar a recorrência dos clien
 15. transactions_features: transações enriquecidas com o mês e o estágio da compra.
 
 Com isso foram geradas 3 tabelas analíticas principais que foram exportadas em Parquet e serão utilizadas para a etapa de análise exploratória.
+
+## Análise Exploratória
+A análise exploratória foi orientada pelas perguntas definidas no início do projeto, com foco na recorrência e em sua relação com clientes, produtos e canais.
+
+### Principais resultados
+
+- 67,1% dos clientes realizaram compras em pelo menos dois dias distintos;
+
+- os recorrentes concentraram 95,1% dos itens e 95,2% do valor observado;
+
+- metade dos clientes recorrentes realizou a segunda compra em até 44 dias;
+
+- a retenção apresentou maior queda nos primeiros meses após a entrada;
+
+- a faixa de 25 a 34 anos e os membros ativos do clube apresentaram os maiores indicadores de recorrência;
+
+- o mix de produtos mudou pouco entre a primeira compra observada e as posteriores;
+
+- as maiores diferenças no mix de produtos foram encontradas entre os canais comerciais.
+
+- As relações identificadas são descritivas e não devem ser interpretadas como causais.
