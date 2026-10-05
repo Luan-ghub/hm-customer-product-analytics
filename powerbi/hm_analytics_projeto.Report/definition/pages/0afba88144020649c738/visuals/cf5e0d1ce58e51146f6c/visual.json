@@ -1,0 +1,108 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "cf5e0d1ce58e51146f6c",
+  "position": {
+    "x": 1636.6666666666667,
+    "y": 298.33333333333337,
+    "z": 26005,
+    "height": 53.333333333333336,
+    "width": 238.33333333333334,
+    "tabOrder": 26005
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "d_article"
+                    }
+                  },
+                  "Property": "product_group_name"
+                }
+              },
+              "queryRef": "d_article.product_group_name",
+              "nativeQueryRef": "Grupo dos Produtos",
+              "active": true,
+              "displayName": "Grupo dos Produtos"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "d_article"
+                    }
+                  },
+                  "Property": "prod_name"
+                }
+              },
+              "queryRef": "d_article.prod_name",
+              "nativeQueryRef": "Produtos",
+              "active": false,
+              "displayName": "Produtos"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4a6c25b740954688cbc0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "d_article"
+              }
+            },
+            "Property": "product_group_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a2cf9e226676bd7c2da3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "d_article"
+              }
+            },
+            "Property": "prod_name"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

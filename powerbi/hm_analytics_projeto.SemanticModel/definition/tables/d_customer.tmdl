@@ -1,0 +1,261 @@
+table d_customer
+	lineageTag: cdbcae54-3b0a-4a45-88d1-65c7fccd4336
+
+	column customer_id
+		dataType: string
+		lineageTag: 96df4baf-4cba-4dac-97a0-18c838d9be74
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_purchase_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6f165a00-6904-4fc8-9e7d-56ceee873dcd
+		summarizeBy: none
+		sourceColumn: first_purchase_date
+
+		variation Variation
+			isDefault
+			relationship: 387fabc8-3d41-4e65-aa62-4d865de5f4ab
+			defaultHierarchy: LocalDateTable_88fe9e62-63af-492c-8537-e67ecc11c1e4.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column second_purchase_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1d3dc08d-969f-4f47-ac52-dee9008ca196
+		summarizeBy: none
+		sourceColumn: second_purchase_date
+
+		variation Variation
+			isDefault
+			relationship: c0275e7a-30ac-4d8b-ab6f-9091bdf91c9f
+			defaultHierarchy: LocalDateTable_9a0dc658-a54d-4067-9a0c-c5bc0b71cbbf.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_purchase_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4c98a4fe-84aa-4a53-b775-f3d1a78a0da7
+		summarizeBy: none
+		sourceColumn: last_purchase_date
+
+		variation Variation
+			isDefault
+			relationship: 73c390b1-a636-4f88-a6b8-9181bd4a2413
+			defaultHierarchy: LocalDateTable_8ce1265a-14e8-4096-89ad-ecb4cbfc05d8.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column purchase_days
+		dataType: int64
+		formatString: 0
+		lineageTag: e36799c4-0439-47a2-8db9-f76a8285fd9c
+		summarizeBy: sum
+		sourceColumn: purchase_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column items_purchased
+		dataType: int64
+		formatString: 0
+		lineageTag: 4141d631-09d8-482c-90a4-ca38fc062505
+		summarizeBy: sum
+		sourceColumn: items_purchased
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: double
+		lineageTag: b970ded8-6c62-49fa-9545-9e048dea9c24
+		summarizeBy: sum
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column days_to_second_purchase
+		dataType: int64
+		formatString: 0
+		lineageTag: e8e28309-bf19-4921-bea7-21d1e1132b74
+		summarizeBy: sum
+		sourceColumn: days_to_second_purchase
+
+		annotation SummarizationSetBy = Automatic
+
+	column recency_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c300c2f-98ce-4bca-9c7b-8c2e36520862
+		summarizeBy: sum
+		sourceColumn: recency_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column available_followup_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ead6ae3-76fb-4118-94a5-58508e94286b
+		summarizeBy: sum
+		sourceColumn: available_followup_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_recurring_observed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 972f98dc-a40a-4840-993f-0d23f92b387d
+		summarizeBy: none
+		sourceColumn: is_recurring_observed
+
+		annotation SummarizationSetBy = Automatic
+
+	column cohort_month
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cbb3f251-d464-49ab-811d-e317b54d2167
+		summarizeBy: none
+		sourceColumn: cohort_month
+
+		variation Variation
+			isDefault
+			relationship: 522a4e99-7a90-43a6-89d6-9a7528f3d8a7
+			defaultHierarchy: LocalDateTable_bd7c646a-f127-45ae-b453-96a2a81a8d7d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column unique_article
+		dataType: int64
+		formatString: 0
+		lineageTag: 29acc3df-d994-4ad8-9603-c51da6e8e9d1
+		summarizeBy: sum
+		sourceColumn: unique_article
+
+		annotation SummarizationSetBy = Automatic
+
+	column channels_used
+		dataType: int64
+		formatString: 0
+		lineageTag: ff2a308f-b56e-4e74-9231-af1729de1a58
+		summarizeBy: sum
+		sourceColumn: channels_used
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel_profile
+		dataType: string
+		lineageTag: 8e4062b1-f279-4bd7-b767-02d0056a2f38
+		summarizeBy: none
+		sourceColumn: channel_profile
+
+		annotation SummarizationSetBy = Automatic
+
+	column fn
+		dataType: double
+		lineageTag: fa0d2c43-3889-4e75-9623-98d7b26ebefa
+		summarizeBy: sum
+		sourceColumn: fn
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column active
+		dataType: double
+		lineageTag: 34908034-0064-4b5d-b87c-85e26536bd0e
+		summarizeBy: sum
+		sourceColumn: active
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column club_member_status
+		dataType: string
+		lineageTag: d42d0654-b54b-4ac6-b6f1-f8a50579fb27
+		summarizeBy: none
+		sourceColumn: club_member_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column fashion_news_frequency
+		dataType: string
+		lineageTag: b8dcd575-fa62-4cd8-b1a7-3376feb1b93c
+		summarizeBy: none
+		sourceColumn: fashion_news_frequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column age
+		dataType: int64
+		formatString: 0
+		lineageTag: 6907ff02-c6b7-4ab7-8b6b-2f2c5df8c7ae
+		summarizeBy: sum
+		sourceColumn: age
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_group
+		dataType: string
+		lineageTag: cf26e465-1882-4f09-921a-31ab2d6f0b27
+		summarizeBy: none
+		sourceColumn: age_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column faixa_dias_de_compra =
+			SWITCH(
+				TRUE(),
+				[purchase_days] = 1, "1 dia",
+				[purchase_days] <= 3, "2 a 3 dias",
+				[purchase_days] <= 5, "4 a 5 dias",
+				[purchase_days] <= 10, "6 a 10 dias",
+				"11 dias ou mais"
+			)
+		lineageTag: c8dbe135-04bd-41f1-8caa-148741b8410b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column perfil_recorrencia =
+			
+			IF(
+			    d_customer[is_recurring_observed] = TRUE(),
+			    "Recorrente",
+			    "Compra única"
+			)
+		lineageTag: 68ce3edc-9125-4186-9faa-32051a8d629d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column perfil_canal_legenda =
+			
+			SWITCH(
+			    d_customer[channel_profile],
+			    "CHANNEL_2_ONLY", "Canal 2",
+			    "CHANNEL_1_ONLY", "Canal 1",
+			    "Multi Canais"
+			)
+		lineageTag: da20edd5-a3b9-4813-abde-1f987cba307a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition d_customer = m
+		mode: import
+		source =
+				let
+				    Fonte = stg_customer_purchase
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

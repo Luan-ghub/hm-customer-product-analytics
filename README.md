@@ -2,6 +2,8 @@
  
  ---
 
+# Resumo
+--- 
 ## Sobre o projeto
  
 Este projeto aplica Customer e Product Analytics aos dados transacionais da H&M, buscando entender a recorrência dos clientes e sua relação com as características dos consumidores, os grupos de produtos e os canais comerciais. O objetivo é identificar quais combinações de clientes, produtos e canais devem ser priorizadas em ações de CRM e em decisões de produto.
@@ -16,6 +18,48 @@ A análise é orientada pelas seguintes perguntas:
 - Quais grupos de produtos estão associados à primeira compra e às compras posteriores?
 - Como os canais comerciais se relacionam com recorrência, frequência, valor e preferência?
 
+## Principais Conclusões
+
+
+1. Recorrência dos clientes: 67,1% dos clientes compraram em pelo menos dois dias distintos. Entre os recorrentes, metade voltou em até 44 dias, embora os 50% centrais tenham retornado entre 13 e 120 dias.
+
+2. Participação dos recorrentes: os clientes recorrentes concentraram 95,1% dos itens e 95,2% do valor observado. Eles compraram, em média, 33 itens, aproximadamente dez vezes a média dos clientes de compra única.
+
+3. Características dos clientes: a faixa de 25 a 34 anos apresentou a maior recorrência, com 72%, enquanto membros ativos do clube e clientes multicanal também registraram maior frequência e valor observado. A retenção apresentou sua maior queda nos primeiros meses após a entrada.
+
+4. Comportamento dos produtos: o grupo de produtos mudou pouco após a primeira compra observada. Garment Upper body caiu de 42,4% para 38,9%, enquanto Garment Full body aumentou de 9% para 11,6%, sendo os grupos de maior participação nas compras
+
+5. Canais comerciais: os clientes exclusivos dos canais 1 e 2 apresentaram recorrência semelhante, mas o canal 2 registrou maiores médias de itens e valor. Os clientes multicanal apresentaram os maiores indicadores e também foram encontradas diferenças no mix de produtos entre os canais.
+
+## Dashboard
+
+### Visão Geral
+
+- Apresenta os principais indicadores de clientes, itens, valor observado e recorrência, além da evolução mensal da recompra e da retenção por coorte.
+
+![Visão Gerencial](powerbi/imagens/visao_geral.png)
+
+### Clientes
+
+- Compara recorrência, frequência e valor entre faixas etárias, status do clube e perfis de canal.
+
+![Clientes](powerbi/imagens/clientes.png)
+
+### Produtos
+
+- Apresenta a participação dos grupos de produtos e as mudanças encontradas entre a primeira compra observada e as compras posteriores.
+
+![Produtos](powerbi/imagens/produtos.png)
+
+### Canais
+
+- Compara clientes, recorrência, evolução mensal e diferenças no mix de produtos entre os canais comerciais.
+
+![Canais Comerciais](powerbi/imagens/canais.png)
+--- 
+
+# Etapas do Projeto
+
 ## Fonte dos dados
  
 Os dados são provenientes da competição [H&M Personalized Fashion Recommendations](https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations/data), disponibilizada pela H&M no Kaggle.
@@ -26,6 +70,26 @@ Foram utilizadas três bases:
 - `customers.csv`: características cadastrais dos clientes;
 - `transactions_train.csv`: histórico de itens comprados entre setembro de 2018 e setembro de 2020.
  
+
+## Estrutura do Projeto
+
+## Estrutura do projeto
+
+```text
+hm-analytics/
+├── data/
+├── notebooks/
+├── powerbi/
+│   ├── hm_analytics_projeto.Report/
+│   ├── hm_analytics_projeto.SemanticModel/
+│   ├── imagens/
+│   └── hm_analytics_projeto.pbip
+├── .env.example
+├── .gitignore
+├── README.md
+└── requirements.txt
+```
+
 ## Inspeção dos dados
  
 Cada base foi avaliada quanto ao tamanho, aos tipos de coluna, à cardinalidade, aos valores ausentes, aos registros repetidos e aos relacionamentos entre as tabelas.
@@ -86,8 +150,8 @@ Após a limpeza, foram criadas variáveis para analisar a recorrência dos clien
 
 Com isso foram geradas 3 tabelas analíticas principais que foram exportadas em Parquet e serão utilizadas para a etapa de análise exploratória.
 
-## Análise Exploratória
-A análise exploratória foi orientada pelas perguntas definidas no início do projeto, com foco na recorrência e em sua relação com clientes, produtos e canais.
+## Análise Exploratória,
+A análise exploratória foi orientada pelas perguntas definidas no início do projet,o, com foco na recorrência e em sua relação com clientes, produtos e canais.
 
 ### Principais resultados
 
@@ -106,3 +170,23 @@ A análise exploratória foi orientada pelas perguntas definidas no início do p
 - as maiores diferenças no mix de produtos foram encontradas entre os canais comerciais.
 
 - As relações identificadas são descritivas e não devem ser interpretadas como causais.
+
+## Visualização de Dados
+
+### Dashboard no Power BI
+
+O dashboard foi desenvolvido em PowerBI contendo quatro páginas:
+
+1. Visão Gerencial;
+2. Clientes;
+3. Produtos;
+4. Canais Comerciais.
+
+As páginas trazem algumas das métricas analisadas na EDA com o objetivo de responder de forma visual as perguntas iniciais do projeto.
+
+
+### Limitações
+
+- Price é uma variável normalizada, o que dificulta tirar conclusões acerca do valor real gasto pelos clientes;
+- Os registros representam itens, não pedidos, pois a base não possui os identificadores de pedidos;
+- Os meses de setembro de 2018 e setembro de 2020 não representam meses completos.

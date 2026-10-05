@@ -1,0 +1,181 @@
+table m_measures
+	lineageTag: 2b94bf70-b2cc-4c6c-b27a-0c6be7db5dad
+
+	measure clientes = DISTINCTCOUNT(f_transactions[customer_id])
+		formatString: 0.000
+		displayFolder: 01 - Indicadores Gerais
+		lineageTag: e6c94cd9-30d8-4fab-8bc7-d96212743dd1
+
+	measure itens_comprados = COUNTROWS(f_transactions)
+		formatString: 0
+		displayFolder: 01 - Indicadores Gerais
+		lineageTag: 88e7d523-2b40-4f2a-baea-de23225d3da7
+
+	measure valor = SUM((f_transactions[price]))
+		displayFolder: 01 - Indicadores Gerais
+		lineageTag: efe0ae0b-9bd2-4aa9-af91-4eba40f2ab23
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure clientes_recorrentes = CALCULATE([clientes],d_customer[is_recurring_observed] == TRUE())
+		formatString: 0
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: 82bd5d0a-32eb-43c0-9f25-ddc398e80874
+
+	measure taxa_recorrencia = ([clientes_recorrentes]/[clientes])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: 5971fbaa-5fbc-4e28-835f-6186d59201e2
+
+	measure itens_clientes_recorrentes = CALCULATE([itens_comprados],d_customer[is_recurring_observed] = TRUE())
+		formatString: 0
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: b8c592e4-078a-466a-87a0-f4c3f0ed1b5d
+
+	measure taxa_recorrente_itens = [itens_clientes_recorrentes]/[itens_comprados]
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: 5c871345-7585-4554-be5a-657016a8680c
+
+	measure clientes_compra_unica = ```
+			CALCULATE([clientes],d_customer[is_recurring_observed] = FALSE()) 
+			```
+		formatString: 0
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: f2b7c7b7-10bf-4825-b7b2-19704f9c61cf
+
+	measure valor_recorrentes = CALCULATE([valor],d_customer[is_recurring_observed]= TRUE())
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: 93727b8b-148b-484e-9766-df697dc9c350
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure taxa_recorrentes_valor = [valor_recorrentes]/[valor]
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: 6196822a-1550-4f01-9f32-595fd88d1295
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure media_itens_por_cliente = [itens_comprados]/[clientes]
+		formatString: 0.00
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: 74038ab5-a6b4-4cbd-a6d5-38e0054a6262
+
+	measure media_valor_por_cliente = [valor]/[clientes]
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: bd8003ec-ee53-4401-82af-19a67e2eaaec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure media_dias_de_compra = AVERAGE(d_customer[purchase_days])
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: 1dfed3c8-b291-4677-ba04-51acd7a184f0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure mediana_ate_segunda_compra = MEDIAN(d_customer[days_to_second_purchase])
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: a3ce10e0-e8fa-443c-8f68-b655135b15d7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure clientes_com_recompra = CALCULATE([clientes],f_transactions[purchase_stage] = "SUBSEQUENT_DATE")
+		formatString: 0
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: 1543e719-70f3-4679-b75f-732535c8c963
+
+	measure taxa_clientes_com_recompra = [clientes_com_recompra]/[clientes]
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: 4d94a17a-bda7-46e3-97e8-d5afd8a9de7b
+
+	measure participacao_grupo_produtos = [itens_comprados]/CALCULATE([itens_comprados],ALL(d_article[product_group_name]))
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 03- Produtos e Canais
+		lineageTag: 86284ab1-2a6f-4e58-b2bf-435a712339ce
+
+	measure diferença_percentual_produtos_apos_primeira_compra =
+			
+			VAR sharefirst =
+			    CALCULATE(
+			        [participacao_grupo_produtos],
+			        ALL(f_transactions[purchase_stage]),
+			        f_transactions[purchase_stage] = "FIRST_OBSERVED_DATE"
+			    )
+			VAR sharelater =
+			    CALCULATE(
+			        [participacao_grupo_produtos],
+			        ALL(f_transactions[purchase_stage]),
+			        f_transactions[purchase_stage] = "SUBSEQUENT_DATE"
+			    )
+			RETURN
+			    (sharelater - sharefirst)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 03- Produtos e Canais
+		lineageTag: 01497bd5-7626-45db-aed7-79c2cc43eae1
+
+	measure diferença_percental_produtos_canais =
+			
+			VAR sharec1 =
+			    CALCULATE(
+			        [participacao_grupo_produtos],
+			        ALL(f_transactions[sales_channel_id]),
+			        f_transactions[sales_channel_id] = 1
+			    )
+			VAR sharec2 =
+			    CALCULATE(
+			        [participacao_grupo_produtos],
+			        ALL(f_transactions[sales_channel_id]),
+			        f_transactions[sales_channel_id] = 2
+			    )
+			RETURN
+			    (sharec2 - sharec1)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 03- Produtos e Canais
+		lineageTag: 4dda29b0-f6be-4c17-938f-1b8edfd77313
+
+	measure taxa_retencao =
+			
+			SELECTEDVALUE(
+			    cohort_retention[retention_rate]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 02 - Clientes e Retenção
+		lineageTag: 6efb738c-8cff-41ee-90c3-b82d360fd5ca
+
+	measure clientes_somente_canal_1 = CALCULATE([clientes], d_customer[channel_profile] = "CHANNEL_1_ONLY")
+		formatString: 0
+		displayFolder: 03- Produtos e Canais
+		lineageTag: 95f0ac8b-4bf8-4541-b69b-ebf518f6e859
+
+	measure clientes_somente_canal_2 = CALCULATE([clientes], d_customer[channel_profile] = "CHANNEL_2_ONLY")
+		formatString: 0
+		displayFolder: 03- Produtos e Canais
+		lineageTag: 2235eded-a512-4888-895a-69e2f17196f3
+
+	measure clientes_multicanal = CALCULATE([clientes], d_customer[channel_profile] = "MULTICHANNEL")
+		formatString: 0
+		displayFolder: 03- Produtos e Canais
+		lineageTag: 5a75fbfb-1823-4c3a-8c29-c56c2856a654
+
+	column placeholder
+		isHidden
+		formatString: 0
+		lineageTag: 37d472a0-e19e-466a-9461-2f439d2d558b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [placeholder]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition m_measures = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "placeholder", INTEGER,
+				    {{1}}
+				)
+
+	annotation PBI_Id = dff4ec6143ed4b0e8f3cb6bd57eed676
+

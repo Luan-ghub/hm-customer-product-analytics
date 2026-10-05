@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "84e7ffed4090610b6818",
+  "position": {
+    "x": 1398.3333333333335,
+    "y": 298.33333333333337,
+    "z": 26004,
+    "height": 53.333333333333336,
+    "width": 238.33333333333334,
+    "tabOrder": 26004
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "d_customer"
+                    }
+                  },
+                  "Property": "perfil_canal_legenda"
+                }
+              },
+              "queryRef": "d_customer.perfil_canal_legenda",
+              "nativeQueryRef": "Canal de Compra",
+              "active": true,
+              "displayName": "Canal de Compra"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d0a938150ee863ec5e03",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "d_customer"
+              }
+            },
+            "Property": "perfil_canal_legenda"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

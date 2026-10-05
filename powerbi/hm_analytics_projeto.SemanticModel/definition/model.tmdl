@@ -1,0 +1,31 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["stg_articles","stg_customer_purchase","stg_customer_monthly","stg_transactions","f_coorte_activity","f_coorte_size","ProjectRoot","d_article","d_customer","f_transactions","cohort_retention"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table d_article
+ref table d_customer
+ref table DateTableTemplate_1b5a3eb2-13f1-4022-82d7-d4856f34281e
+ref table LocalDateTable_88fe9e62-63af-492c-8537-e67ecc11c1e4
+ref table LocalDateTable_9a0dc658-a54d-4067-9a0c-c5bc0b71cbbf
+ref table LocalDateTable_8ce1265a-14e8-4096-89ad-ecb4cbfc05d8
+ref table LocalDateTable_bd7c646a-f127-45ae-b453-96a2a81a8d7d
+ref table f_transactions
+ref table LocalDateTable_c8987537-6d74-4965-ab29-12d441040978
+ref table cohort_retention
+ref table LocalDateTable_a8ee1477-38d4-4c55-a5ae-216bb3669ab8
+ref table d_calendar
+ref table m_measures
+
+ref cultureInfo pt-BR
+

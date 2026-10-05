@@ -1,0 +1,75 @@
+table cohort_retention
+	lineageTag: f7d6fb30-077b-4df6-84a7-d1297db4db56
+
+	column cohort_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3b7f02d9-cec6-41ec-ab3c-02d9f667758b
+		summarizeBy: none
+		sourceColumn: cohort_month
+
+		variation Variation
+			isDefault
+			relationship: f57c37ec-8c0d-43eb-afc4-440363446ef2
+			defaultHierarchy: LocalDateTable_a8ee1477-38d4-4c55-a5ae-216bb3669ab8.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column cohort_index
+		dataType: int64
+		formatString: 0
+		lineageTag: 66e77d90-ddb7-42cd-b882-0b2d463173d0
+		summarizeBy: sum
+		sourceColumn: cohort_index
+
+		annotation SummarizationSetBy = Automatic
+
+	column active_customers
+		dataType: int64
+		formatString: 0
+		lineageTag: 62c16239-9b50-4cfd-b501-58d620572ba9
+		summarizeBy: sum
+		sourceColumn: active_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column coorte_customers
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b7eb8cf-ab0b-45f9-a042-098ff1e925ea
+		summarizeBy: sum
+		sourceColumn: coorte_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column retention_rate
+		dataType: double
+		lineageTag: 77a22a14-f83e-461e-90c0-aa816002f6f7
+		summarizeBy: sum
+		sourceColumn: retention_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition cohort_retention = m
+		mode: import
+		source =
+				let
+				    Fonte = f_coorte_activity,
+				    #"Consultas Mescladas" = Table.NestedJoin(Fonte, {"cohort_month"}, f_coorte_size, {"cohort_month"}, "f_coorte_size", JoinKind.LeftOuter),
+				    #"f_coorte_size Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas", "f_coorte_size", {"coorte_customers"}, {"f_coorte_size.coorte_customers"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"f_coorte_size Expandido",{{"f_coorte_size.coorte_customers", "coorte_customers"}}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Colunas Renomeadas", "retention_rate", each [active_customers]/[coorte_customers]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"retention_rate", Percentage.Type}}),
+				    #"Colunas Reordenadas" = Table.ReorderColumns(#"Tipo Alterado",{"cohort_month", "cohort_index", "active_customers", "coorte_customers", "retention_rate"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Colunas Reordenadas",{{"cohort_month", type date}})
+				in
+				    #"Tipo Alterado1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

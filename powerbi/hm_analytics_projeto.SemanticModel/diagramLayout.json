@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 75,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 382.38305001469371,
+            "y": 6
+          },
+          "nodeIndex": "d_article",
+          "nodeLineageTag": "93933535-bf17-4020-b75d-77d1015e1ccd",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 383.20156119318523,
+            "y": 371.84469795984467
+          },
+          "nodeIndex": "f_transactions",
+          "nodeLineageTag": "988e5194-b523-4b8b-a247-036f2cb36acc",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 75,
+            "y": 337
+          },
+          "nodeIndex": "d_customer",
+          "nodeLineageTag": "cdbcae54-3b0a-4a45-88d1-65c7fccd4336",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1250.3830500146937,
+            "y": 417.99255538979833
+          },
+          "nodeIndex": "cohort_retention",
+          "nodeLineageTag": "f7d6fb30-077b-4df6-84a7-d1297db4db56",
+          "size": {
+            "height": 221,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 697.38305001469371,
+            "y": 396.5
+          },
+          "nodeIndex": "d_calendar",
+          "nodeLineageTag": "970b3bdc-f8d8-4f0a-90a2-868278642536",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1370.3830500146937,
+            "y": 114.49627769489916
+          },
+          "nodeIndex": "m_measures",
+          "nodeLineageTag": "2b94bf70-b2cc-4c6c-b27a-0c6be7db5dad",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

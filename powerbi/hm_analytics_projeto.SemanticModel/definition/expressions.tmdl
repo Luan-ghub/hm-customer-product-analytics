@@ -1,0 +1,96 @@
+expression ProjectRoot = "E:\Area de Trabalho\Formação em Ciencia de Dados-ComunidadeDS-2023\Revisões e Projetos\Portifolio\hm\hm-analytics" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: b7083afc-1178-4ce0-845e-c8ebebcfd21d
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Text
+
+expression stg_articles =
+		let
+		    Source = Parquet.Document(
+		        File.Contents(
+		            ProjectRoot & "\data\articles_clean.parquet"
+		        )
+		    )
+		in
+		    Source
+	lineageTag: 1ecdf165-37fc-4065-95e4-11263585b5dd
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression stg_customer_purchase =
+		let
+		    Source = Parquet.Document(
+		        File.Contents(
+		            ProjectRoot & "\data\customer_purchase.parquet"
+		        )
+		    )
+		in
+		    Source
+	lineageTag: cc9255b8-7fc9-46dc-b3ce-b945f5eff98b
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression stg_customer_monthly =
+		let
+		    Source = Parquet.Document(
+		        File.Contents(
+		            ProjectRoot & "\data\customer_monthly.parquet"
+		        )
+		    )
+		in
+		    Source
+	lineageTag: d30894fa-e054-4d4c-b570-101e886b4822
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression stg_transactions =
+		let
+		    Source = Parquet.Document(
+		        File.Contents(
+		            ProjectRoot & "\data\transactions_features.parquet"
+		        )
+		    )
+		in
+		    Source
+	lineageTag: 80c7049b-709b-4e32-8f42-ea8c3d1856c4
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression f_coorte_activity =
+		let
+		    Fonte = stg_customer_monthly,
+		    #"Colunas Removidas" = Table.RemoveColumns(Fonte,{"purchase_month", "purchase_days_month", "items_purchased_month", "observed_value_month"}),
+		    #"Duplicatas Removidas" = Table.Distinct(#"Colunas Removidas"),
+		    #"Linhas Agrupadas" = Table.Group(#"Duplicatas Removidas", {"cohort_month", "cohort_index"}, {{"Contagem", each Table.RowCount(_), Int64.Type}}),
+		    #"Colunas Reordenadas" = Table.ReorderColumns(#"Linhas Agrupadas",{"cohort_index", "cohort_month", "Contagem"}),
+		    #"Colunas Renomeadas" = Table.RenameColumns(#"Colunas Reordenadas",{{"Contagem", "active_customers"}})
+		in
+		    #"Colunas Renomeadas"
+	lineageTag: 98b72986-e063-4453-b30c-53014fa8c3c7
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression f_coorte_size =
+		let
+		    Fonte = f_coorte_activity,
+		    #"Linhas Filtradas" = Table.SelectRows(Fonte, each ([cohort_index] = 0)),
+		    #"Colunas Renomeadas" = Table.RenameColumns(#"Linhas Filtradas",{{"active_customers", "coorte_customers"}})
+		in
+		    #"Colunas Renomeadas"
+	lineageTag: 746acc00-7747-4769-9816-8ee92c5cea10
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

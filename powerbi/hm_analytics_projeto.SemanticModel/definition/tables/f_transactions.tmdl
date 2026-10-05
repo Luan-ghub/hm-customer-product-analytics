@@ -1,0 +1,81 @@
+table f_transactions
+	lineageTag: 988e5194-b523-4b8b-a247-036f2cb36acc
+
+	column t_dat
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: da106530-3f99-455f-8611-f18b6e5035b3
+		summarizeBy: none
+		sourceColumn: t_dat
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 9d3f5633-6bd2-4672-981e-d663196fcbe9
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column article_id
+		dataType: string
+		lineageTag: da07a261-5c0a-4d6d-a6d2-dbf8e4300de7
+		summarizeBy: none
+		sourceColumn: article_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		lineageTag: 04a85707-1b89-4d7b-b096-63ef2d714290
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sales_channel_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f75e4293-9fb6-4f7f-b16b-2ad189a9ab01
+		summarizeBy: sum
+		sourceColumn: sales_channel_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column purchase_month
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 03ddc538-1895-4a7b-bce2-afbceef05421
+		summarizeBy: none
+		sourceColumn: purchase_month
+
+		variation Variation
+			isDefault
+			relationship: 639fbeb5-4107-4ccf-bb91-12250228aaa9
+			defaultHierarchy: LocalDateTable_c8987537-6d74-4965-ab29-12d441040978.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column purchase_stage
+		dataType: string
+		lineageTag: 171c0a86-879c-43e4-9c0d-268a9e844cf1
+		summarizeBy: none
+		sourceColumn: purchase_stage
+
+		annotation SummarizationSetBy = Automatic
+
+	partition f_transactions = m
+		mode: import
+		source =
+				let
+				    Fonte = stg_transactions
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect x="0.5" y="0.5" width="1279" height="719" rx="16" fill="#F5F5F2" stroke="#D2D3CE"/>
+
+  <!-- Botões de navegação -->
+  <rect x="28" y="106" width="145" height="32" rx="8" fill="#FFFFFF" stroke="#E4E4DF"/>
+  <text x="100.5" y="122" text-anchor="middle" dominant-baseline="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="500" fill="#6D6D68">Visão Gerencial</text>
+  <rect x="183" y="106" width="100" height="32" rx="8" fill="#FFFFFF" stroke="#E4E4DF"/>
+  <text x="233" y="122" text-anchor="middle" dominant-baseline="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="500" fill="#6D6D68">Clientes</text>
+  <rect x="293" y="106" width="105" height="32" rx="8" fill="#FFFFFF" stroke="#E4E4DF"/>
+  <text x="345.5" y="122" text-anchor="middle" dominant-baseline="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="500" fill="#6D6D68">Produtos</text>
+  <rect x="408" y="106" width="105" height="32" rx="8" fill="#FDEBED" stroke="#F40018"/>
+  <text x="460.5" y="122" text-anchor="middle" dominant-baseline="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#F40018">Canais</text>
+
+  <!-- Containers dos cartões -->
+  <rect x="28" y="154" width="226" height="158" rx="12" fill="#FFFFFF" stroke="#E4E4DF"/>
+  <rect x="28" y="328" width="226" height="158" rx="12" fill="#FFFFFF" stroke="#E4E4DF"/>
+  <rect x="28" y="502" width="226" height="158" rx="12" fill="#FFFFFF" stroke="#E4E4DF"/>
+
+  <!-- Containers dos gráficos -->
+  <rect x="270" y="154" width="982" height="246" rx="12" fill="#FFFFFF" stroke="#E4E4DF"/>
+  <rect x="270" y="416" width="462" height="276" rx="12" fill="#FFFFFF" stroke="#E4E4DF"/>
+  <rect x="748" y="416" width="504" height="276" rx="12" fill="#FFFFFF" stroke="#E4E4DF"/>
+</svg>

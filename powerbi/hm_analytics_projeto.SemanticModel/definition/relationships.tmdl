@@ -1,0 +1,42 @@
+relationship 387fabc8-3d41-4e65-aa62-4d865de5f4ab
+	joinOnDateBehavior: datePartOnly
+	fromColumn: d_customer.first_purchase_date
+	toColumn: LocalDateTable_88fe9e62-63af-492c-8537-e67ecc11c1e4.Date
+
+relationship c0275e7a-30ac-4d8b-ab6f-9091bdf91c9f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: d_customer.second_purchase_date
+	toColumn: LocalDateTable_9a0dc658-a54d-4067-9a0c-c5bc0b71cbbf.Date
+
+relationship 73c390b1-a636-4f88-a6b8-9181bd4a2413
+	joinOnDateBehavior: datePartOnly
+	fromColumn: d_customer.last_purchase_date
+	toColumn: LocalDateTable_8ce1265a-14e8-4096-89ad-ecb4cbfc05d8.Date
+
+relationship 522a4e99-7a90-43a6-89d6-9a7528f3d8a7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: d_customer.cohort_month
+	toColumn: LocalDateTable_bd7c646a-f127-45ae-b453-96a2a81a8d7d.Date
+
+relationship 639fbeb5-4107-4ccf-bb91-12250228aaa9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: f_transactions.purchase_month
+	toColumn: LocalDateTable_c8987537-6d74-4965-ab29-12d441040978.Date
+
+relationship f57c37ec-8c0d-43eb-afc4-440363446ef2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: cohort_retention.cohort_month
+	toColumn: LocalDateTable_a8ee1477-38d4-4c55-a5ae-216bb3669ab8.Date
+
+relationship AutoDetected_61094b43-a155-46ad-9423-7babd651733c
+	fromColumn: f_transactions.article_id
+	toColumn: d_article.article_id
+
+relationship AutoDetected_d9c63b28-b1ca-43f4-a17a-73a78e8e67db
+	fromColumn: f_transactions.customer_id
+	toColumn: d_customer.customer_id
+
+relationship 7ad35d4b-91dc-e35a-49d9-234675fba78e
+	fromColumn: f_transactions.t_dat
+	toColumn: d_calendar.Date
+
