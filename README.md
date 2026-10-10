@@ -31,6 +31,16 @@ A análise é orientada pelas seguintes perguntas:
 
 5. Canais comerciais: os clientes exclusivos dos canais 1 e 2 apresentaram recorrência semelhante, mas o canal 2 registrou maiores médias de itens e valor. Os clientes multicanal apresentaram os maiores indicadores e também foram encontradas diferenças no mix de produtos entre os canais.
 
+## Recomendações
+
+As recomendações abaixo partem das relações observadas na análise dos resultados e visualizações.
+
+1. **Criar uma jornada de recompra após a primeira compra:** concentrar comunicações e ofertas personalizadas nos primeiros 44 dias, período em que metade dos clientes recorrentes realizou a segunda compra. A estratégia pode combinar lembretes, recomendações de produtos relacionados e incentivos progressivos, acompanhando conversão e margem por grupo de teste.
+
+2. **Priorizar investimentos no programa de fidelidade e na integração dos canais:** direcionar recursos para benefícios do clube e para uma experiência mais integrada entre os canais, já que membros ativos e clientes multicanal apresentaram maior recorrência, frequência e valor. O investimento pode incluir benefícios consistentes, integração de estoque e continuidade da jornada de compra entre os canais.
+
+3. **Usar o mix de produtos na aquisição e no cross-sell:** manter `Garment Upper body` como grupo relevante para a entrada de clientes e testar recomendações de `Garment Full body` após a primeira compra, categoria cuja participação aumentou nas compras posteriores. As ofertas também podem ser adaptadas às diferenças de preferência encontradas entre os canais.
+
 ## Dashboard
 
 ### Visão Geral
